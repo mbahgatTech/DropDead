@@ -37,20 +37,12 @@ class Coordinator < ICoordinator
 
     def set_next_player_status(player_id)
         player_ids = @players.keys
+        current_index = player_ids.index(player_id)
+        next_index = current_index
 
-        current_index = player_ids.index(player_id) + 1
-        next_index = (current_index + 1) % @players.length 
-        next_player_status = :DEAD
-
-        until next_index == current_index
+        until (next_index = (next_index + 1) % @players.length ) == current_index
             next_player_id = player_ids[next_index]
-            
-            if self.get_player_status(next_player_id) != :DEAD
-              @players[next_player_id].set_status(:ACTIVE)
-              break
-            end
-            
-            next_index = (next_index + 1) % player_ids.length
+            @players[next_player_id].set_status(:ACTIVE) if self.get_player_status(next_player_id) != :DEAD
         end
     end
 end
