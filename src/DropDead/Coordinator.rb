@@ -29,8 +29,6 @@ class Coordinator < ICoordinator
     results = player.perform_turn
     set_next_player_status(player_id)
 
-    return nil if results.nil?
-
     results
   end
 
@@ -43,7 +41,11 @@ class Coordinator < ICoordinator
 
     until (next_index = (next_index + 1) % @players.length) == current_index
       next_player_id = player_ids[next_index]
-      @players[next_player_id].set_status(:ACTIVE) if get_player_status(next_player_id) != :DEAD
+      return @players[next_player_id].set_status(:ACTIVE) if get_player_status(next_player_id) != :DEAD
     end
+
+    # set current player to active if last waiting player
+    current_status = @players[player_id].get_status
+    @players[player_id].set_status(:ACTIVE) if current_status != :DEAD
   end
 end

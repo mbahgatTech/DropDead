@@ -5,7 +5,7 @@ class Players < IPlayers
   end
 
   def initialize_players(player_count, drop_dead)
-    for i in (0..player_count)
+    for i in (1..player_count)
       @players_controllers << PlayerController.new.create_player(drop_dead)
     end
 

@@ -16,4 +16,4 @@ class AutoDropDead
   end
 end
 
-AutoDropDead.new.play_game(4, 4, 5)
+AutoDropDead.new.play_game(4, 4, 6)
