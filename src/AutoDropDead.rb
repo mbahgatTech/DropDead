@@ -1,4 +1,4 @@
-require "./load_drop_dead.rb"
+require_relative "./load_drop_dead.rb"
 
 class AutoDropDead
     def initialize()

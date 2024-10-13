@@ -15,7 +15,7 @@ class Coordinator < ICoordinator
 
     def get_player_status(player_id)
         player = @players[player_id]
-        return :DEAD if nil
+        return :DEAD if player == nil
         
         return player.get_status
     end
